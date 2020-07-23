@@ -1,0 +1,21 @@
+{% extends "ecom/layout.html" %}
+{% block content %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        {% if object.seller == user %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'product-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product-delete' object.id %}">Delete</a>
+          </div>
+        {% else %}
+          <div>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete_from_cart' object.id %}">Delete from cart</a>
+          </div>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ object.title }}</h2>
+      <p class="article-content">{{ object.description }}</p>
+    </div>
+  </article>
+{% endblock content %}

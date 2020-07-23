@@ -1,0 +1,23 @@
+{% extends "ecom/layout.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class = "content-section">
+        {% for product, buyer in notifications %}
+            <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ product.image.url }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <small class="text-muted">{{ product.date_posted|date:"F d, Y" }}</small>
+               <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product-delete' product.id %}">Delete</a>
+            </div>
+            <h2><a class="article-title" href="{% url 'product-detail' product.id %}">{{ product.title }}</a></h2>
+            <!-- <p class="article-content">{{ product.description }}</p> -->
+            <!-- <h3><a href="{% url 'addtocart' product.id %}">add to cart</a></h3> -->
+            <h2><a class="article-title" href="#">{{ buyer.user.username }}</a></h2>
+            <p class="article-content">{{ buyer.address }}</p>
+          </div>
+        </article>
+    {% endfor %}
+    </div>	
+{% endblock content %}
+		
